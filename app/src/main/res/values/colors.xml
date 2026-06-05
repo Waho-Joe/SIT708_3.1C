@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="light_bg">#FFFFFF</color>
+    <color name="light_text">#000000</color>
+    <color name="light_button">#E0E0E0</color>
+    <color name="light_progress">#4CAF50</color>
+
+    <color name="dark_bg">#121212</color>
+    <color name="dark_text">#FFFFFF</color>
+    <color name="dark_button">#333333</color>
+    <color name="dark_progress">#00E676</color>
+
+    <color name="correct_green">#4CAF50</color>
+    <color name="wrong_red">#F44336</color>
 </resources>

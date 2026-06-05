@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Result">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/resultMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +39,7 @@
         <Button
             android:id="@+id/btnNewQuiz"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="Take New Quiz"
             android:textAllCaps="false"
             android:layout_marginTop="50dp" />
@@ -47,7 +47,7 @@
         <Button
             android:id="@+id/btnFinish"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="Finish"
             android:textAllCaps="false"
             android:layout_marginTop="16dp" />

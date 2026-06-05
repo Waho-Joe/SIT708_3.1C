@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Quiz">
+
     <LinearLayout
         android:id="@+id/quizMain"
         android:layout_width="match_parent"
@@ -26,6 +27,14 @@
             android:textColor="#333333"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/switchTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dark Mode"
+            android:textColor="#333333"
+            android:layout_marginTop="16dp" />
 
         <LinearLayout
             android:id="@+id/progressContainer"

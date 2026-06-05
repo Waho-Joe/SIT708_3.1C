@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.widget.Switch;
 
 public class Quiz extends AppCompatActivity {
 
@@ -24,6 +29,11 @@ public class Quiz extends AppCompatActivity {
     int score = 0;
 
     boolean submitted = false;
+
+    private LinearLayout quizMain;
+
+    private Switch switchTheme;
+    private SharedPreferences sharedPreferences;
 
     String userName;
 
@@ -85,6 +95,29 @@ public class Quiz extends AppCompatActivity {
         if (userName == null || userName.isEmpty()) {
             userName = "your name";
         }
+        quizMain = findViewById(R.id.quizMain);
+        txtWelcome = findViewById(R.id.txtWelcome);
+        txtProgressNumber = findViewById(R.id.txtProgressNumber);
+        txtQuestionTitle = findViewById(R.id.txtQuestionTitle);
+        txtQuestion = findViewById(R.id.txtQuestion);
+
+        btnAnswer1 = findViewById(R.id.btnAnswer1);
+        btnAnswer2 = findViewById(R.id.btnAnswer2);
+        btnAnswer3 = findViewById(R.id.btnAnswer3);
+        btnSubmit = findViewById(R.id.btnSubmit);
+
+        switchTheme = findViewById(R.id.switchTheme);
+
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
+
+        boolean isDarkMode = sharedPreferences.getBoolean("darkMode", false);
+        switchTheme.setChecked(isDarkMode);
+        applyTheme(isDarkMode);
+
+        switchTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            sharedPreferences.edit().putBoolean("darkMode", isChecked).apply();
+            applyTheme(isChecked);
+        });
 
         loadQuestion();
     }
@@ -126,6 +159,47 @@ public class Quiz extends AppCompatActivity {
 
         Button selectedButton = getAnswerButton(index);
         selectedButton.setBackgroundColor(Color.GRAY);
+    }
+
+    private void applyTheme(boolean isDarkMode) {
+        if (isDarkMode) {
+            quizMain.setBackgroundColor(Color.parseColor("#121212"));
+
+            txtWelcome.setTextColor(Color.WHITE);
+            txtProgressNumber.setTextColor(Color.WHITE);
+            txtQuestionTitle.setTextColor(Color.WHITE);
+            txtQuestion.setTextColor(Color.WHITE);
+            switchTheme.setTextColor(Color.WHITE);
+
+            btnAnswer1.setTextColor(Color.WHITE);
+            btnAnswer2.setTextColor(Color.WHITE);
+            btnAnswer3.setTextColor(Color.WHITE);
+            btnSubmit.setTextColor(Color.WHITE);
+
+            btnAnswer1.setBackgroundColor(Color.parseColor("#333333"));
+            btnAnswer2.setBackgroundColor(Color.parseColor("#333333"));
+            btnAnswer3.setBackgroundColor(Color.parseColor("#333333"));
+            btnSubmit.setBackgroundColor(Color.parseColor("#444444"));
+
+        } else {
+            quizMain.setBackgroundColor(Color.WHITE);
+
+            txtWelcome.setTextColor(Color.parseColor("#333333"));
+            txtProgressNumber.setTextColor(Color.parseColor("#333333"));
+            txtQuestionTitle.setTextColor(Color.parseColor("#333333"));
+            txtQuestion.setTextColor(Color.parseColor("#333333"));
+            switchTheme.setTextColor(Color.parseColor("#333333"));
+
+            btnAnswer1.setTextColor(Color.BLACK);
+            btnAnswer2.setTextColor(Color.BLACK);
+            btnAnswer3.setTextColor(Color.BLACK);
+            btnSubmit.setTextColor(Color.BLACK);
+
+            btnAnswer1.setBackgroundColor(Color.parseColor("#E0E0E0"));
+            btnAnswer2.setBackgroundColor(Color.parseColor("#E0E0E0"));
+            btnAnswer3.setBackgroundColor(Color.parseColor("#E0E0E0"));
+            btnSubmit.setBackgroundColor(Color.parseColor("#E0E0E0"));
+        }
     }
 
     private void submitAnswer() {
