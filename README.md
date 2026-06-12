@@ -31,3 +31,6 @@ app/src/main/res/layout/
 ├── activity_main.xml
 ├── activity_quiz.xml
 └── activity_result.xml
+
+app/src/main/
+└── AndroidManifest.xml
